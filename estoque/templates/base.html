@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>{% block title %}Controle de Estoque{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    {% block extra_css %}{% endblock %}  {# bloco para CSS específico do template #}
 </head>
 <body>
     <header>
@@ -17,8 +19,7 @@
         <a href="{% url 'relatorios' %}">Relatórios</a>
     </nav>
     <main>
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 </body>
 </html>

@@ -1,17 +1,43 @@
 {% extends 'base.html' %}
 
+{% load static %}  {# Sempre carregar static no início #}
+
 {% block title %}Cadastrar Produto{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cadastrar_produto.css' %}">
+{% endblock %}
+
 {% block content %}
-<h2>Cadastrar Produto</h2>
-<form method="post">
-    {% csrf_token %}
-    <label>Nome:</label><br>
-    <input type="text" name="nome"><br><br>
-    <label>Quantidade:</label><br>
-    <input type="number" name="quantidade"><br><br>
-    <label>Preço:</label><br>
-    <input type="text" name="preco"><br><br>
-    <button type="submit">Salvar</button>
-</form>
+<div class="form-container">
+    <h2>Cadastrar Produto</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="nome">Nome do Produto:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto" required>
+        </div>
+        <div class="form-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" placeholder="0" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="preco">Preço:</label>
+            <input type="text" id="preco" name="preco" placeholder="R$ 0,00" required>
+        </div>
+        <button type="submit" class="btn-submit">Salvar</button>
+    </form>
+</div>
+
+<script>
+    // Máscara de moeda para o campo preço
+    const precoInput = document.getElementById('preco');
+    precoInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = (value / 100).toFixed(2) + '';
+        value = value.replace('.', ',');
+        value = 'R$ ' + value;
+        e.target.value = value;
+    });
+</script>
 {% endblock %}

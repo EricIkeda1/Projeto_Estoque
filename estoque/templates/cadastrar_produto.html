@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load static %}  {# Sempre carregar static no início #}
+{% load static %} 
 
 {% block title %}Cadastrar Produto{% endblock %}
 
@@ -30,7 +30,6 @@
 </div>
 
 <script>
-    // Máscara de moeda para o campo preço
     const precoInput = document.getElementById('preco');
     precoInput.addEventListener('input', function(e) {
         let value = e.target.value.replace(/\D/g, '');

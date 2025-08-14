@@ -4,11 +4,6 @@
     padding: 20px;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
 .resumo-cards {
     display: flex;
     gap: 20px;

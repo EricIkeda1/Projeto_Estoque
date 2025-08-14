@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Produto
+from django.db.models import Sum
 
 def listar_produtos(request):
     return render(request, 'listar_produtos.html')
@@ -30,10 +31,24 @@ def movimentacoes(request):
 def relatorios(request):
     return render(request, 'relatorios.html')
 
-from django.shortcuts import render, redirect
-from .models import Produto
-
-
 def listar_produtos(request):
     produtos = Produto.objects.all()
     return render(request, 'listar_produtos.html', {'produtos': produtos})
+
+def relatorios(request):
+    produtos = Produto.objects.all()
+
+    total_itens = produtos.aggregate(Sum('quantidade'))['quantidade__sum'] or 0
+    valor_total = sum(p.quantidade * p.preco for p in produtos)
+
+    nomes = [p.nome for p in produtos]
+    quantidades = [p.quantidade for p in produtos]
+
+    context = {
+        'produtos': produtos,
+        'total_itens': total_itens,
+        'valor_total': valor_total,
+        'nomes': nomes,
+        'quantidades': quantidades
+    }
+    return render(request, 'relatorios.html', context)

@@ -1,7 +1,5 @@
 .relatorios-container {
-    max-width: 1000px;
     margin: auto;
-    padding: 20px;
 }
 
 .resumo-cards {
@@ -59,7 +57,7 @@
 }
 
 .tabela-produtos th {
-    background: #007bff;
+    background: #4CAF50;
     color: white;
 }
 

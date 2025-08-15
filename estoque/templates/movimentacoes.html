@@ -4,5 +4,29 @@
 
 {% block content %}
 <h2>Movimentações</h2>
-<p>Aqui você pode visualizar entradas e saídas de produtos.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Tipo</th>
+            <th>Quantidade</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mov in movimentacoes %}
+        <tr>
+            <td>{{ mov.produto.nome }}</td>
+            <td>{{ mov.get_tipo_display }}</td>
+            <td>{{ mov.quantidade }}</td>
+            <td>{{ mov.data|date:"d/m/Y H:i" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhuma movimentação registrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

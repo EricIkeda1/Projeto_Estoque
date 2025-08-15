@@ -105,6 +105,23 @@ git clone https://github.com/EricIkeda1/Projeto_Estoque.git
 cd Projeto_Estoque
 ```
 
+2. Crie e ative o ambiente virtual 
+```
+python -m venv venv
+```
+
+3. Ativar o ambiente virtual (Se for no Windows utilizar cmd)
+
+Linux / Mac
+```
+source venv/bin/activate
+```
+
+Windows
+```
+venv\Scripts\activate
+```
+
 2. Instale as dependências
    
 ```
